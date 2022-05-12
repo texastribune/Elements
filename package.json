@@ -10,7 +10,7 @@
     "typescript": "^3.5.1"
   },
   "scripts": {
-    "test": "test",
+    "build": "tsc -p tsconfig.json",
     "doc": "tsc -p tsconfig.docs.json && typedoc --options typedoc.json src/"
   },
   "author": "Ty Brockhoeft",
