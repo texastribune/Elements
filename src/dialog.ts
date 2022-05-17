@@ -54,32 +54,39 @@ export class Dialog extends Grabbable {
     this.containerElement = document.createElement('div');
     this.containerElement.id = Dialog.containerId;
 
+    const preventMovement = (event: MouseEvent | TouchEvent) => {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
     let expandButton = document.createElement('button');
     expandButton.type = 'button';
     expandButton.id = Dialog.expandButtonId;
-    expandButton.onmousedown = (event) => {
-      // Prevent from moving dialog.
-      event.stopPropagation();
-      event.preventDefault();
-    };
-    expandButton.onclick = (event) => {
-      event.stopPropagation();
-      event.preventDefault();
+
+    const toggleExpand = (event: MouseEvent | TouchEvent) => {
+      preventMovement(event);
       this.expanded = !this.expanded;
-    };
+    }
+
+    expandButton.onmousedown = preventMovement;
+    expandButton.ontouchstart = preventMovement;
+    expandButton.onclick = toggleExpand;
+    expandButton.ontouchend = toggleExpand;
+
     let deleteButton = document.createElement('button');
     deleteButton.type = 'button';
     deleteButton.id = Dialog.deleteButtonId;
-    deleteButton.onmousedown = (event) => {
-      // Prevent from moving dialog.
-      event.stopPropagation();
-      event.preventDefault();
-    };
-    deleteButton.onclick = (event) => {
-      event.stopPropagation();
-      event.preventDefault();
+
+    const hideDialog = (event: MouseEvent | TouchEvent) => {
+      preventMovement(event);
       this.visible = false;
-    };
+    }
+
+    deleteButton.onmousedown = preventMovement;
+    deleteButton.ontouchstart = preventMovement;
+    deleteButton.onclick = hideDialog;
+    deleteButton.ontouchend = hideDialog;
+
     this.headerElement.appendChild(this.nameElement);
     this.headerElement.appendChild(deleteButton);
     this.headerElement.appendChild(expandButton);
@@ -299,6 +306,7 @@ export class ConfirmDialog extends Dialog {
     this.confirmButton.id = ConfirmDialog.confirmButtonId;
     this.confirmButton.textContent = "Yes";
     this.confirmButton.onclick = this.onConfirmed.bind(this);
+    this.confirmButton.ontouchend = this.onConfirmed.bind(this);
 
     this.confirmButton.textContent = this.confirmationText;
     this.shadowDOM.appendChild(this.confirmButton);
