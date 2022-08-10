@@ -23,10 +23,11 @@ export declare class Route extends CustomElement {
     static nameAttribute: string;
     protected containerId: string;
     constructor();
-    static readonly observedAttributes: string[];
-    name: string;
-    readonly path: string[];
-    readonly isRoot: boolean;
+    static get observedAttributes(): string[];
+    get name(): string;
+    set name(value: string);
+    get path(): string[];
+    get isRoot(): boolean;
     static currentPath(): string[];
     updateFromAttributes(attributes: {
         [p: string]: string | null;
@@ -44,8 +45,8 @@ export declare abstract class LazyRoute extends Route {
     url: string | null;
     private container;
     protected constructor();
-    static readonly observedAttributes: string[];
-    readonly loaded: ChildNode | null;
+    static get observedAttributes(): string[];
+    get loaded(): ChildNode | null;
     show(): void;
     /**
      * Render the element shadow dom from the data given in the response.
@@ -61,9 +62,10 @@ export declare class RouterLink extends CustomElement {
     static EVENT_ROUTE_CHANGE: string;
     static routeAttribute: string;
     constructor();
-    static readonly observedAttributes: string[];
-    readonly css: string;
-    route: string;
+    static get observedAttributes(): string[];
+    get css(): string;
+    get route(): string;
+    set route(value: string);
     updateFromAttributes(attributes: {
         [p: string]: string | null;
     }): void;

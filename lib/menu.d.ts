@@ -14,10 +14,11 @@ export declare class Menu extends CustomElement {
     private readonly button;
     private readonly container;
     constructor();
-    static readonly observedAttributes: string[];
-    readonly css: string;
-    readonly opened: boolean;
-    collapseWidth: number;
+    static get observedAttributes(): string[];
+    get css(): string;
+    get opened(): boolean;
+    get collapseWidth(): number;
+    set collapseWidth(value: number);
     updateFromAttributes(attributes: {
         [p: string]: string | null;
     }): void;
