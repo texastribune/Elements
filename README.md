@@ -1,3 +1,6 @@
+_Archived on 8/11/22 after pulling elements into the files repo. [Read more here](https://github.com/texastribune/files/pull/556)_
+
+
 # Elements
 
 Useful custom elements. Check out the [API docs][API] and [examples][Examples].
