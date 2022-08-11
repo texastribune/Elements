@@ -14,10 +14,12 @@ export declare abstract class AbstractInput extends CustomElement {
      */
     static EVENT_CHANGE: string;
     protected constructor();
-    static readonly observedAttributes: string[];
-    readonly css: string;
-    name: string;
-    errorMessage: string;
+    static get observedAttributes(): string[];
+    get css(): string;
+    get name(): string;
+    set name(value: string);
+    get errorMessage(): string;
+    set errorMessage(value: string);
     protected onValueChange(): void;
 }
 export declare class TextInput extends AbstractInput {
@@ -26,26 +28,30 @@ export declare class TextInput extends AbstractInput {
     protected input: HTMLInputElement | HTMLTextAreaElement;
     protected label: HTMLLabelElement;
     constructor();
-    static readonly observedAttributes: string[];
-    readonly css: string;
-    value: any;
-    type: string;
+    static get observedAttributes(): string[];
+    get css(): string;
+    get value(): any;
+    set value(value: any);
+    get type(): string;
+    set type(value: string);
     updateFromAttributes(attributes: {
         [p: string]: string | null;
     }): void;
     protected onValueChange(): void;
 }
 export declare class ArrayInput extends TextInput {
-    value: string[];
+    get value(): string[];
+    set value(value: string[]);
 }
 export declare class BooleanInput extends AbstractInput {
     private readonly input;
     private readonly label;
     private checkId;
     constructor();
-    static readonly observedAttributes: string[];
-    readonly css: string;
-    value: boolean;
+    static get observedAttributes(): string[];
+    get css(): string;
+    get value(): boolean;
+    set value(value: boolean);
     updateFromAttributes(attributes: {
         [p: string]: string | null;
     }): void;
@@ -58,11 +64,14 @@ export declare class SelectInput extends AbstractInput {
     protected label: HTMLLabelElement;
     private emptyOption;
     constructor();
-    static readonly observedAttributes: string[];
-    readonly css: string;
-    multi: boolean;
-    nullable: boolean;
-    value: any;
+    static get observedAttributes(): string[];
+    get css(): string;
+    get multi(): boolean;
+    set multi(value: boolean);
+    get nullable(): boolean;
+    set nullable(value: boolean);
+    get value(): any;
+    set value(value: any);
     updateFromAttributes(attributes: {
         [p: string]: string | null;
     }): void;
@@ -75,13 +84,17 @@ export declare class SelectOption extends CustomElement {
     static disabledAttribute: string;
     option: HTMLOptionElement;
     constructor();
-    static readonly observedAttributes: string[];
-    readonly css: string;
-    value: any;
-    type: string;
-    selected: boolean;
-    disabled: boolean;
-    readonly parentSelect: HTMLSelectElement | null;
+    static get observedAttributes(): string[];
+    get css(): string;
+    get value(): any;
+    set value(value: any);
+    get type(): string;
+    set type(value: string);
+    get selected(): boolean;
+    set selected(value: boolean);
+    get disabled(): boolean;
+    set disabled(value: boolean);
+    get parentSelect(): HTMLSelectElement | null;
     updateFromAttributes(attributes: {
         [p: string]: string | null;
     }): void;
@@ -110,10 +123,12 @@ export declare class Form extends CustomElement {
     private readonly container;
     private readonly errorMessage;
     constructor();
-    readonly css: string;
-    action: string | null;
-    method: string | null;
-    readonly data: {
+    get css(): string;
+    get action(): string | null;
+    set action(value: string | null);
+    get method(): string | null;
+    set method(value: string | null);
+    get data(): {
         [name: string]: any;
     };
     updateFromAttributes(attributes: {
